@@ -1,0 +1,125 @@
+[
+  {
+    "id": "s1",
+    "type": "javascript",
+    "js": "goToBlock(32316479)"
+  },
+  {
+    "id": "s2",
+    "type": "http",
+    "next": "s3",
+    "http": {
+      "method": "post",
+      "content_type": "json",
+      "url": "<BITRIX_WEBHOOK>/batch.json",
+      "body": "{\n  \"halt\": 0,\n  \"cmd\": {\n    \"create_contact\": \"crm.contact.add?fields[NAME]={{first_name}}&fields[LAST_NAME]={{last_name}}&fields[PHONE][0][VALUE]={{phone}}&fields[PHONE][0][VALUE_TYPE]=WORK&fields[SOURCE_ID]=22|TELEGRAM&fields[ASSIGNED_BY_ID]={{$assigned}}&fields[UTM_TERM]={{$assigned}}\",\n    \"create_deal\": \"crm.deal.add?fields[TITLE]=Реффер ({{phone}})&fields[CATEGORY_ID]=70&fields[SOURCE_ID]=22|TELEGRAM&fields[CONTACT_IDS][0]=$result[create_contact]&fields[UF_CRM_1753900970]=1840&fields[UF_CRM_1739784186942]={{id}}&fields[ASSIGNED_BY_ID]={{$assigned}}&fields[UTM_TERM]={{$assigned}}\"\n  }\n}"
+    },
+    "buttons": [
+      {
+        "text": "Нет ответа от сервера",
+        "key": "http_timeout"
+      }
+    ]
+  },
+  {
+    "id": "s3",
+    "type": "chain",
+    "name": "4.0",
+    "messages": [
+      {
+        "type": "image",
+        "caption": "Отлично! 🤗 Вот твоя персональная реферальная ссылка: \n{{$url}}\n\nТеперь просто поделись ею с друзьями и попроси их оставить заявку ✨",
+        "file": "6 (1).png"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "В главное меню",
+        "next": "s1"
+      }
+    ]
+  },
+  {
+    "id": "s4",
+    "type": "request_phone",
+    "name": "8.0 - Номер",
+    "next": "s5",
+    "request_phone": "Остался последний шаг 🙂 – для генерации персональной ссылки нажми на кнопку «Отправить номер»"
+  },
+  {
+    "id": "s5",
+    "type": "variable_operation",
+    "next": "s2",
+    "vars": [
+      {
+        "url": "https://drive16.ru/cherepovets?utm=chp&utm_source=referral&utm_campaign={{phone}}&utm_medium={{id}}&utm_term={{$assigned}}"
+      }
+    ]
+  },
+  {
+    "id": "s6",
+    "type": "variable_operation",
+    "next": "s2",
+    "vars": [
+      {
+        "url": "https://drive16.ru/?utm_source=referral&utm_campaign={{phone}}&utm_medium={{id}}&utm_term={{$assigned}}"
+      }
+    ]
+  },
+  {
+    "id": "s7",
+    "type": "chain",
+    "name": "5.0 - Город",
+    "messages": [
+      {
+        "type": "image",
+        "caption": "Уточни, пожалуйста, из какого ты города?",
+        "file": "3 (1).png"
+      }
+    ],
+    "save_answer_to": "Город",
+    "buttons": [
+      {
+        "text": "Казань",
+        "next": "s9"
+      },
+      {
+        "text": "Череповец",
+        "next": "s4"
+      }
+    ]
+  },
+  {
+    "id": "s8",
+    "type": "chain",
+    "messages": [
+      {
+        "text": "Отлично! 🤗 Сейчас я сгенерирую для тебя персональную реферальную ссылку. Просто отправь ее друзьям, которые собираются учиться на права. \n\nЗа каждый заключённый по ссылке договор ты получишь 3000₽ на карту, а твой друг – скидку 3000₽ на обучение ✨\n\nУчаствуя в реферальной программе, вы подтверждаете, что ознакомлены и согласны с условиями <a href=\"https://clck.ru/3WeHf2\">оферты</a>."
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Регистрация",
+        "type": "link",
+        "url": "https://referral.drive16.online/go/tg-ref"
+      },
+      {
+        "text": "В главное меню",
+        "next": "s1"
+      }
+    ]
+  },
+  {
+    "id": "s9",
+    "type": "request_phone",
+    "name": "8.0 - Номер",
+    "next": "s6",
+    "request_phone": "Остался последний шаг 🙂 – для генерации персональной ссылки нажми на кнопку «Отправить номер»"
+  },
+  {
+    "id": "s10",
+    "type": "start",
+    "main": true,
+    "next": "s8"
+  }
+]

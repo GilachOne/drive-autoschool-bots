@@ -1,0 +1,477 @@
+[
+  {
+    "id": "s1",
+    "type": "variable_operation",
+    "name": "Обнулить переменные",
+    "next": "s6",
+    "vars": [
+      {
+        "rs": "0"
+      },
+      {
+        "ks": "0"
+      },
+      {
+        "bik": "0"
+      },
+      {
+        "bank": "0"
+      }
+    ]
+  },
+  {
+    "id": "s2",
+    "type": "chain",
+    "name": "Способ получения",
+    "messages": [
+      {
+        "text": "Способ выплаты:\nа) Списание задолженности за обучение 3000 руб.\nб) Выплата на банковскую карту 2610 р. (390 р. НДФЛ удерживается в налоговую)"
+      }
+    ],
+    "save_answer_to": "pay2",
+    "buttons": [
+      {
+        "text": "Списание задолженности за обучение 3000 руб.",
+        "next": "s1"
+      },
+      {
+        "text": "Выплата на банковскую карту 2610 р.",
+        "next": "s21"
+      },
+      {
+        "text": "Вернуться"
+      }
+    ]
+  },
+  {
+    "id": "s3",
+    "type": "chain",
+    "name": "Согласие",
+    "messages": [
+      {
+        "text": "Продолжая, вы даёте согласие на обработку персональных данных и на получение денежных средств по реферальной программе способом, указанным в боте."
+      }
+    ],
+    "save_answer_to": "soglasen",
+    "buttons": [
+      {
+        "text": "Соглашаюсь",
+        "next": "s16"
+      },
+      {
+        "text": "Вернуться",
+        "next": "s4"
+      },
+      {
+        "text": "Любая другая фраза",
+        "next": "s16"
+      }
+    ]
+  },
+  {
+    "id": "s4",
+    "type": "chain",
+    "name": "snils",
+    "messages": [
+      {
+        "text": "СНИЛС"
+      }
+    ],
+    "save_answer_to": "snils",
+    "buttons": [
+      {
+        "text": "Вернуться",
+        "next": "s5"
+      },
+      {
+        "text": "Любая другая фраза",
+        "next": "s3"
+      }
+    ]
+  },
+  {
+    "id": "s5",
+    "type": "chain",
+    "name": "inn",
+    "messages": [
+      {
+        "text": "ИНН"
+      }
+    ],
+    "save_answer_to": "inn",
+    "buttons": [
+      {
+        "text": "Вернуться",
+        "next": "s6"
+      },
+      {
+        "text": "Любая другая фраза",
+        "next": "s4"
+      }
+    ]
+  },
+  {
+    "id": "s6",
+    "type": "chain",
+    "name": "passport",
+    "messages": [
+      {
+        "text": "Паспорт:\n- Серия и номер\n- Кем выдан \n- Когда выдан  \n- Код подразделения\n- Адрес прописки\n- Гражданство\n- Дата рождения"
+      }
+    ],
+    "save_answer_to": "passport",
+    "buttons": [
+      {
+        "text": "Вернуться",
+        "next": "s18"
+      },
+      {
+        "text": "Сменить способ получения",
+        "next": "s2"
+      },
+      {
+        "text": "Любая другая фраза",
+        "next": "s5"
+      }
+    ]
+  },
+  {
+    "id": "s7",
+    "type": "chain",
+    "name": "fio",
+    "messages": [
+      {
+        "text": "ФИО (как в паспорте)"
+      }
+    ],
+    "save_answer_to": "fio",
+    "buttons": [
+      {
+        "text": "Любая другая фраза",
+        "next": "s2"
+      }
+    ]
+  },
+  {
+    "id": "s8",
+    "type": "variable_operation",
+    "name": "Обнулить переменные",
+    "vars": [
+      {
+        "pay": "0"
+      },
+      {
+        "gibdd": "0"
+      },
+      {
+        "registered": "0"
+      }
+    ]
+  },
+  {
+    "id": "s9",
+    "type": "variable_operation",
+    "name": "Обнулить переменные",
+    "next": "s15",
+    "vars": [
+      {
+        "pay": "0"
+      },
+      {
+        "gibdd": "0"
+      },
+      {
+        "registered": "0"
+      }
+    ]
+  },
+  {
+    "id": "s10",
+    "type": "chain",
+    "next": "s8",
+    "messages": [
+      {
+        "text": "Привет! Реферал {{ $referal_name}} с номером {{ $referal_phone}} оставил заявку на обучение, но не может участвовать в программе, так как по нему числится активная сделка."
+      }
+    ]
+  },
+  {
+    "id": "s11",
+    "type": "condition",
+    "conditions": [
+      {
+        "type": "variable_comparison",
+        "var": "registered",
+        "op": "=",
+        "value": "yes"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Да",
+        "key": "yes",
+        "next": "s10"
+      },
+      {
+        "text": "Нет",
+        "key": "no",
+        "next": "s22"
+      }
+    ]
+  },
+  {
+    "id": "s12",
+    "type": "chain",
+    "next": "s8",
+    "messages": [
+      {
+        "text": "Привет! Реферал {{ $referal_name}} с номером {{ $referal_phone}} оплатил обучение! \n\nКак только курсант будет зарегистрирован в ГИБДД, мы уведомим вас и запросим реквизиты для выплаты вознаграждения."
+      }
+    ]
+  },
+  {
+    "id": "s13",
+    "type": "condition",
+    "conditions": [
+      {
+        "type": "variable_comparison",
+        "var": "gibdd",
+        "op": "=",
+        "value": "yes"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Да",
+        "key": "yes",
+        "next": "s23"
+      },
+      {
+        "text": "Нет",
+        "key": "no",
+        "next": "s11"
+      }
+    ]
+  },
+  {
+    "id": "s14",
+    "type": "javascript",
+    "next": "s17",
+    "js": "var bank2 = getContactVariable(\"bank2\") || \"\";\nsetContactVariable(\"bank2_encoded\", encodeURIComponent(bank2));\nvar pay2 = String(getContactVariable(\"pay2\") || \"\");\nsetContactVariable(\"pay_type_id\", pay2.indexOf(\"Списание\") !== -1 ? \"3014\" : \"3012\");"
+  },
+  {
+    "id": "s15",
+    "type": "chain",
+    "messages": [
+      {
+        "text": "Спасибо! Ваши реквизиты приняты. Ожидайте поступления оплаты в течение 30 дней."
+      }
+    ]
+  },
+  {
+    "id": "s16",
+    "type": "variable_operation",
+    "next": "s14",
+    "vars": {
+      "op": "free_value",
+      "var": "bank2",
+      "value": "ФИО: {{$fio}}\nРасчетный счёт: {{$rs}}\nКорреспондентский счет: {{$ks}}\nБИК банка: {{$bik}}\nНаименование банка: {{$bank}}\nТелефон реферала: {{ $referal_phone}}\nДанные паспорта: {{ $passport }}\nИНН: {{ $inn }}\nСНИЛС: {{ $snils}} \nСпособ получения: {{ $pay2}}"
+    }
+  },
+  {
+    "id": "s17",
+    "type": "http",
+    "next": "s9",
+    "http": {
+      "method": "post",
+      "content_type": "json",
+      "url": "<BITRIX_WEBHOOK>/batch.json",
+      "body": "{\n  \"halt\": 0,\n  \"cmd\": {\n    \"create_contact\": \"crm.contact.add?fields[NAME]={{first_name}}&fields[LAST_NAME]={{last_name}}&fields[PHONE][0][VALUE]={{phone}}&fields[PHONE][0][VALUE_TYPE]=WORK&fields[SOURCE_ID]=22|TELEGRAM&fields[ASSIGNED_BY_ID]={{$assigned}}&fields[UTM_TERM]={{$assigned}}\",\n    \"create_deal\": \"crm.deal.add?fields[TITLE]=Реффер ({{phone}})&fields[CATEGORY_ID]=70&fields[SOURCE_ID]=22|TELEGRAM&fields[CONTACT_IDS][0]=$result[create_contact]&fields[UF_CRM_1753900970]=1840&fields[UF_CRM_1739784186942]={{id}}&fields[ASSIGNED_BY_ID]={{$assigned}}&fields[UTM_TERM]={{$assigned}}&fields[STAGE_ID]=C70:UC_7WUFXH&fields[UF_CRM_1791361907]={{$pay_type_id}}&fields[COMMENTS]={{$bank2_encoded}}\"\n  }\n}"
+    },
+    "buttons": [
+      {
+        "text": "Нет ответа от сервера",
+        "key": "http_timeout"
+      }
+    ]
+  },
+  {
+    "id": "s18",
+    "type": "chain",
+    "name": "bank",
+    "messages": [
+      {
+        "text": "Наименование банка"
+      }
+    ],
+    "save_answer_to": "bank",
+    "buttons": [
+      {
+        "text": "Вернуться",
+        "next": "s19"
+      },
+      {
+        "text": "Любая другая фраза",
+        "next": "s6"
+      }
+    ]
+  },
+  {
+    "id": "s19",
+    "type": "chain",
+    "name": "bik",
+    "messages": [
+      {
+        "text": "БИК банка"
+      }
+    ],
+    "save_answer_to": "bik",
+    "buttons": [
+      {
+        "text": "Вернуться",
+        "next": "s20"
+      },
+      {
+        "text": "Любая другая фраза",
+        "next": "s18"
+      }
+    ]
+  },
+  {
+    "id": "s20",
+    "type": "chain",
+    "name": "ks",
+    "messages": [
+      {
+        "text": "Корреспондентский счет"
+      }
+    ],
+    "save_answer_to": "ks",
+    "buttons": [
+      {
+        "text": "Вернуться",
+        "next": "s21"
+      },
+      {
+        "text": "Любая другая фраза",
+        "next": "s19"
+      }
+    ]
+  },
+  {
+    "id": "s21",
+    "type": "chain",
+    "name": "rs",
+    "messages": [
+      {
+        "text": "Номер счета"
+      }
+    ],
+    "save_answer_to": "rs",
+    "buttons": [
+      {
+        "text": "Вернуться",
+        "next": "s7"
+      },
+      {
+        "text": "Любая другая фраза",
+        "next": "s20"
+      }
+    ]
+  },
+  {
+    "id": "s22",
+    "type": "notification_contact",
+    "next": "s8",
+    "notify_contact": {
+      "bot": "Автошкола Драйв ТГ MAX",
+      "recipient": "<CONTACT>"
+    }
+  },
+  {
+    "id": "s23",
+    "type": "chain",
+    "messages": [
+      {
+        "text": "Привет! Реферал {{ $referal_name}} с номером {{ $referal_phone}} оплатил обучение и зарегистрирован в ГИБДД! Чтобы получить вознаграждение, откройте кабинет, войдите по номеру телефона и выберите друга: https://referal.drive16.online"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Перейти в портал",
+        "type": "link",
+        "url": "https://referal.drive16.online"
+      }
+    ]
+  },
+  {
+    "id": "s24",
+    "type": "condition",
+    "conditions": [
+      {
+        "type": "variable_comparison",
+        "var": "pay",
+        "op": "=",
+        "value": "Я молодец!"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Да",
+        "key": "yes",
+        "next": "s12"
+      },
+      {
+        "text": "Нет",
+        "key": "no",
+        "next": "s13"
+      }
+    ]
+  },
+  {
+    "id": "s25",
+    "type": "condition",
+    "conditions": [
+      {
+        "type": "variable_comparison",
+        "var": "pay",
+        "op": "=",
+        "value": "Новая заявка"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Да",
+        "key": "yes",
+        "next": "s27"
+      },
+      {
+        "text": "Нет",
+        "key": "no",
+        "next": "s24"
+      }
+    ]
+  },
+  {
+    "id": "s26",
+    "type": "javascript",
+    "next": "s25",
+    "js": "var v = getContactVariable(\"pay\");\nv = String(v || \"\");\n\n// Проверяем наличие слеша старым способом (indexOf)\nif (v.indexOf(\"/\") !== -1) {\n    v = v.split(\"/\")[1].trim();\n} else {\n    v = v.trim();\n}\n\nsetContactVariable(\"pay\", v);"
+  },
+  {
+    "id": "s27",
+    "type": "chain",
+    "next": "s8",
+    "messages": [
+      {
+        "text": "Привет! Реферал {{ $referal_name}} с номером {{ $referal_phone}} оставил заявку на обучение, ожидаем оплату."
+      }
+    ]
+  },
+  {
+    "id": "s28",
+    "type": "start",
+    "main": true,
+    "next": "s26"
+  }
+]

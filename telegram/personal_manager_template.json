@@ -1,0 +1,28 @@
+[
+  {
+    "id": "s1",
+    "type": "variable_operation",
+    "name": "<МЕНЕДЖЕР>",
+    "next": "s2",
+    "vars": [
+      {
+        "assigned": "<MANAGER_ID>"
+      }
+    ]
+  },
+  {
+    "id": "s2",
+    "type": "script",
+    "name": "Рефералка",
+    "raw": {
+      "script": 2298888,
+      "script_name": "Драйв (рефералка)"
+    }
+  },
+  {
+    "id": "s3",
+    "type": "start",
+    "main": true,
+    "next": "s1"
+  }
+]

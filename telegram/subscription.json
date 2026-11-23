@@ -1,0 +1,41 @@
+[
+  {
+    "id": "s1",
+    "type": "condition",
+    "conditions": [
+      {
+        "type": "subscribed_to_telegram_channel"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Да",
+        "key": "yes"
+      },
+      {
+        "text": "Нет",
+        "key": "no"
+      }
+    ]
+  },
+  {
+    "id": "s2",
+    "type": "start",
+    "main": true,
+    "next": "s3"
+  },
+  {
+    "id": "s3",
+    "type": "chain",
+    "messages": [
+      {
+        "text": "Чтобы участвовать в розыгрыше — подпишись на наш Telegram-канал и нажми кнопку \"Я подписался\"."
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Привет"
+      }
+    ]
+  }
+]

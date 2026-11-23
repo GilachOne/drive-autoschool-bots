@@ -1,0 +1,79 @@
+[
+  {
+    "id": "s1",
+    "type": "http",
+    "next": "s4",
+    "http": {
+      "method": "post",
+      "content_type": "json",
+      "url": "<BITRIX_WEBHOOK>/batch.json",
+      "body": "{\n  \"halt\": 0,\n  \"cmd\": {\n    \"create_contact\": \"crm.contact.add?fields[NAME]={{first_name}}&fields[LAST_NAME]={{last_name}}&fields[PHONE][0][VALUE]={{phone}}&fields[PHONE][0][VALUE_TYPE]=WORK&fields[SOURCE_ID]=TG_RASSYLKA&fields[ASSIGNED_BY_ID]=72\",\n    \"create_deal\": \"crm.deal.add?fields[TITLE]=Тг-бот Рассылка, ({{phone}})&fields[CATEGORY_ID]=0&fields[SOURCE_ID]=TG_RASSYLKA&fields[CONTACT_IDS][0]=$result[create_contact]&fields[UF_CRM_1753900970]=3052&fields[UF_CRM_1739784186942]={{id}}&fields[UF_CRM_63A030A8D81DB]={{telegram_id}}&fields[UTM_SOURCE]=tg_rassylka&fields[ASSIGNED_BY_ID]=72\"\n  }\n}"
+    },
+    "buttons": [
+      {
+        "text": "Нет ответа от сервера",
+        "key": "http_timeout"
+      }
+    ]
+  },
+  {
+    "id": "s2",
+    "type": "chain",
+    "messages": [
+      {
+        "type": "image",
+        "caption": "Дешевле уже не будет 🔥\n\nС 1 ноября цены на права категории B растут, и дальше будут только расти. Если вы собирались учиться, лучше момента не найти: октябрь последний месяц по текущей цене.\n\nЧтобы начать, хватит 5 000 ₽: это первый платеж, остальное в рассрочку без процентов. А менеджер подберет вам персональную скидку.\n\nНажми «Продолжить», чтобы я рассказала подробнее.",
+        "file": "Октябрь_бот_1_1.jpg"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Продолжить",
+        "next": "s6"
+      }
+    ]
+  },
+  {
+    "id": "s3",
+    "type": "chain",
+    "name": "4.0",
+    "messages": [
+      {
+        "type": "image",
+        "caption": "Отлично! 🤗 Я передала твой номер моим коллегам, ожидай звонка.\n\nА пока подпишись на наш <a href=\"https://t.me/<INVITE>\">Телеграм-канал</a> – там мы делимся секретами, которые помогут тебе сдать на права с 1-й попытки.",
+        "file": "7.png"
+      }
+    ]
+  },
+  {
+    "id": "s4",
+    "type": "deal_status",
+    "next": "s5",
+    "deal_status": "<STATUS>"
+  },
+  {
+    "id": "s5",
+    "type": "notification",
+    "next": "s3",
+    "notification": {
+      "text": "Пришла заявка от клиента",
+      "channels": [
+        "telegram",
+        "crm"
+      ]
+    }
+  },
+  {
+    "id": "s6",
+    "type": "request_phone",
+    "name": "8.0 - Номер",
+    "next": "s1",
+    "request_phone": "Нажми на кнопку «Отправить номер»."
+  },
+  {
+    "id": "s7",
+    "type": "start",
+    "main": true,
+    "next": "s2"
+  }
+]

@@ -1,0 +1,71 @@
+[
+  {
+    "id": "s1",
+    "type": "chain",
+    "messages": [
+      {
+        "type": "image",
+        "caption": "Привет! Места на июнь быстро заканчиваются. Успей  записаться, чтобы получить права уже в этом году! 🔥🔥\n\nНажми «Продолжить», чтобы я рассказала подробнее.",
+        "file": "Права на авто 1_1.jpg"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Продолжить",
+        "next": "s6"
+      }
+    ]
+  },
+  {
+    "id": "s2",
+    "type": "chain",
+    "name": "4.0",
+    "messages": [
+      {
+        "type": "image",
+        "caption": "Отлично! 🤗 Я передала твой номер моим коллегам, ожидай звонка.",
+        "file": "7.png"
+      }
+    ]
+  },
+  {
+    "id": "s3",
+    "type": "deal_status",
+    "next": "s4",
+    "deal_status": "<STATUS>"
+  },
+  {
+    "id": "s4",
+    "type": "notification",
+    "next": "s2",
+    "notification": {
+      "text": "Пришла заявка от клиента",
+      "channels": [
+        "telegram",
+        "crm"
+      ]
+    }
+  },
+  {
+    "id": "s5",
+    "type": "webhook",
+    "next": "s3",
+    "webhook": {
+      "url": "<ALBATO_WEBHOOK>",
+      "method": "get"
+    }
+  },
+  {
+    "id": "s6",
+    "type": "request_phone",
+    "name": "8.0 - Номер",
+    "next": "s5",
+    "request_phone": "Нажми на кнопку «Отправить номер»."
+  },
+  {
+    "id": "s7",
+    "type": "start",
+    "main": true,
+    "next": "s1"
+  }
+]
