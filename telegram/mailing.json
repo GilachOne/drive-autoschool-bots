@@ -7,7 +7,7 @@
       "method": "post",
       "content_type": "json",
       "url": "<BITRIX_WEBHOOK>/batch.json",
-      "body": "{\n  \"halt\": 0,\n  \"cmd\": {\n    \"create_contact\": \"crm.contact.add?fields[NAME]={{first_name}}&fields[LAST_NAME]={{last_name}}&fields[PHONE][0][VALUE]={{phone}}&fields[PHONE][0][VALUE_TYPE]=WORK&fields[SOURCE_ID]=TG_RASSYLKA&fields[ASSIGNED_BY_ID]=72\",\n    \"create_deal\": \"crm.deal.add?fields[TITLE]=Тг-бот Рассылка, ({{phone}})&fields[CATEGORY_ID]=0&fields[SOURCE_ID]=TG_RASSYLKA&fields[CONTACT_IDS][0]=$result[create_contact]&fields[UF_CRM_1753900970]=3052&fields[UF_CRM_1739784186942]={{id}}&fields[UF_CRM_63A030A8D81DB]={{telegram_id}}&fields[UTM_SOURCE]=tg_rassylka&fields[ASSIGNED_BY_ID]=72\"\n  }\n}"
+      "body": "{\n  \"halt\": 0,\n  \"cmd\": {\n    \"create_contact\": \"crm.contact.add?fields[NAME]={{first_name}}&fields[LAST_NAME]={{last_name}}&fields[PHONE][0][VALUE]={{phone}}&fields[PHONE][0][VALUE_TYPE]=WORK&fields[SOURCE_ID]=<SOURCE_ID_MAILING>&fields[ASSIGNED_BY_ID]=<MANAGER_ID>\",\n    \"create_deal\": \"crm.deal.add?fields[TITLE]=Тг-бот Рассылка, ({{phone}})&fields[CATEGORY_ID]=<MAIN_PIPELINE_ID>&fields[SOURCE_ID]=<SOURCE_ID_MAILING>&fields[CONTACT_IDS][0]=$result[create_contact]&fields[UF_CRM_SOURCE_NEW]=<SOURCE_NEW_TG_MAILING>&fields[UF_CRM_BOT_CONTACT_ID]={{id}}&fields[UF_CRM_TELEGRAM_ID]={{telegram_id}}&fields[UTM_SOURCE]=tg_rassylka&fields[ASSIGNED_BY_ID]=<MANAGER_ID>\"\n  }\n}"
     },
     "buttons": [
       {
