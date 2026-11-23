@@ -6,6 +6,20 @@
 
 ![Главный сценарий в конструкторе LeadTeh](screenshots/telegram-main.jpg)
 
+## Как это выглядит в Telegram
+
+<table><tr>
+<td><img src="screenshots/tg-01-start.jpg" width="200" alt="Старт"></td>
+<td><img src="screenshots/tg-02-offer.jpg" width="200" alt="Оффер"></td>
+<td><img src="screenshots/tg-03-city.jpg" width="200" alt="Выбор города"></td>
+</tr><tr>
+<td><img src="screenshots/tg-04-category.jpg" width="200" alt="Категория прав"></td>
+<td><img src="screenshots/tg-05-phone.jpg" width="200" alt="Запрос номера"></td>
+<td><img src="screenshots/tg-06-done.jpg" width="200" alt="Заявка передана"></td>
+</tr></table>
+
+Старт → оффер → город → категория прав → кнопка «Отправить номер» → заявка уходит в CRM, менеджер получает уведомление.
+
 ## Что умеют боты
 
 - **Лидогенерация** — квалификация (город, категория прав), запрос телефона, сделка в нужной воронке CRM, уведомление менеджеру.
